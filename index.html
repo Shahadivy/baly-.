@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baly Company Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #1800ad;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            animation: bounce 2s infinite;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: #e6e6ff;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            animation: slideIn 0.8s ease;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+        }
+        
+        h2 i {
+            font-size: 1.3rem;
+        }
+        
+        .contact-list, .instructions-list, .locations-list, .emergency-list {
+            list-style-type: none;
+        }
+        
+        .contact-list li, .instructions-list li, .locations-list li, .emergency-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-list li:last-child, .instructions-list li:last-child, .locations-list li:last-child, .emergency-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .icon {
+            font-size: 1.2rem;
+            width: 30px;
+            text-align: center;
+            color: #ffffff;
+        }
+        
+        .location-link, .phone-link {
+            color: #a3d2ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .location-link:hover, .phone-link:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        
+        .emergency-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .emergency-number {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: floatParticle 15s infinite linear;
+        }
+        
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: -1;
+        }
+        
+        .decoration-1 {
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+        }
+        
+        .decoration-2 {
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .emergency-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="decoration decoration-1"></div>
+    <div class="decoration decoration-2"></div>
+    
+    <div class="container">
+        <div class="badge">Baly Co.</div>
+        
+        <div class="header">
+            <div class="logo"><i class="fas fa-building"></i></div>
+            <h1 class="floating">Welcome to Baly Company!</h1>
+            <p class="subtitle">Your Quick Guide for a Smooth Start</p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-users"></i> Points of Contact</h2>
+            <ul class="contact-list">
+                <li><span class="icon"><i class="fas fa-female"></i></span> Shahad Mohammed – HR</li>
+                <li><span class="icon"><i class="fas fa-headset"></i></span> Fakih – Field Support</li>
+                <li><span class="icon"><i class="fas fa-truck"></i></span> Abualhasan – Logistics</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-clipboard-list"></i> Important Instructions</h2>
+            <ul class="instructions-list">
+                <li><span class="icon"><i class="fas fa-passport"></i></span> Always carry your passport with you</li>
+                <li><span class="icon"><i class="fas fa-hotel"></i></span> If staying at IQ Gate, carry your authorization letter</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-map-marker-alt"></i> Locations</h2>
+            <ul class="locations-list">
+                <li><span class="icon"><i class="fas fa-building"></i></span> Baly HQ – <a href="https://maps.app.goo.gl/4kDDmwor1GvF7kTD7" class="location-link" target="_blank">View on Map</a></li>
+                <li><span class="icon"><i class="fas fa-door-open"></i></span> IQ Gate – <a href="https://maps.app.goo.gl/j3VHRQ13mDkzRVc29" class="location-link" target="_blank">View on Map</a></li>
+                <li><span class="icon"><i class="fas fa-home"></i></span> Guesthouse – <a href="https://maps.app.goo.gl/TvstHrwvPwxwBr4x8" class="location-link" target="_blank">View on Map</a></li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-mobile-alt"></i> SIM Card & Keys</h2>
+            <ul class="instructions-list">
+                <li><span class="icon"><i class="fas fa-sim-card"></i></span> Get a SIM card through the HR team</li>
+                <li><span class="icon"><i class="fas fa-key"></i></span> Collect and return room key from the designated person</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-hands-helping"></i> Cultural Norms & Guidelines</h2>
+            <ul class="instructions-list">
+                <li><span class="icon"><i class="fas fa-clock"></i></span> Be punctual</li>
+                <li><span class="icon"><i class="fas fa-ban"></i></span> Avoid sensitive topics (religion, politics)</li>
+                <li><span class="icon"><i class="fas fa-tshirt"></i></span> Dress modestly in public areas</li>
+                <li><span class="icon"><i class="fas fa-handshake"></i></span> Respect local customs</li>
+            </ul>
+        </div>
+        
+        <div class="section pulse">
+            <h2><i class="fas fa-exclamation-triangle"></i> Emergency Contacts</h2>
+            <ul class="emergency-list">
+                <li class="emergency-item">
+                    <span>Shahad:</span>
+                    <a href="tel:07722007742" class="phone-link emergency-number">07722007742</a>
+                </li>
+                <li class="emergency-item">
+                    <span>Fakih:</span>
+                    <a href="tel:07748114435" class="phone-link emergency-number">07748114435</a>
+                </li>
+                <li class="emergency-item">
+                    <span>Abualhasan:</span>
+                    <a href="tel:07808847920" class="phone-link emergency-number">07808847920</a>
+                </li>
+                <li class="emergency-item">
+                    <span>Police:</span>
+                    <span class="emergency-number">104</span>
+                </li>
+                <li class="emergency-item">
+                    <span>Ambulance:</span>
+                    <span class="emergency-number">122</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 3px and 8px
+                const size = Math.random() * 5 + 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation delay and duration
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 15;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Add staggered animation to sections
+        function animateSections() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.animationDelay = `${index * 0.2}s`;
+            });
+        }
+        
+        // Initialize when page loads
+        window.addEventListener('load', function() {
+            createParticles();
+            animateSections();
+        });
+    </script>
+</body>
+</html>
